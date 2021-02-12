@@ -145,7 +145,7 @@ pour le modifier envoyer `&ordre=`
 
 
 #### TimestampTrait
-les champs `createdAt` , `createdAt` , `createdAt` ,  `deletedAt` , `isdeleted`
+les champs `createdAt` , `updatedAt` , `deletedAt` , `isdeleted`
 sont  optionnels dans les requêtes POST et PUT. Ces champs sont  automatiquement perssités par un `EventSubsciber`
 > pour l'afficher dans le JsonResponse d'élève par exemple il  faut ajouter le groupe 
  >exemple :

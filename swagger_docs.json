@@ -1,0 +1,1536 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "",
+        "description": "",
+        "version": "0.0.0"
+    },
+    "servers": [
+        {
+            "url": "/",
+            "description": ""
+        }
+    ],
+    "paths": {
+        "/api/eleves": {
+            "get": {
+                "operationId": "getEleveCollection",
+                "tags": [
+                    "Eleve"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Eleve collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hydra:member": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Eleve.jsonld-get-all-eleve"
+                                            }
+                                        },
+                                        "hydra:totalItems": {
+                                            "type": "integer",
+                                            "minimum": 0
+                                        },
+                                        "hydra:view": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@id": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:first": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "hydra:last": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "hydra:next": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                }
+                                            }
+                                        },
+                                        "hydra:search": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:template": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:variableRepresentation": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:mapping": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "@type": {
+                                                                "type": "string"
+                                                            },
+                                                            "variable": {
+                                                                "type": "string"
+                                                            },
+                                                            "property": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "required": {
+                                                                "type": "boolean"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "hydra:member"
+                                    ]
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Eleve-get-all-eleve"
+                                    }
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Eleve-get-all-eleve"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of Eleve resources.",
+                "description": "Retrieves the collection of Eleve resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 30,
+                            "minimum": 0
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "name": "pagination",
+                        "in": "query",
+                        "description": "Enable or disable pagination",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "style": "form"
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "operationId": "postEleveCollection",
+                "tags": [
+                    "Eleve"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Eleve resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve.jsonld-post-eleve"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve-post-eleve"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve-post-eleve"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetEleveItem": {
+                                "operationId": "getEleveItem",
+                                "parameters": {
+                                    "id": "$response.body#/id"
+                                },
+                                "requestBody": [],
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET /api/eleves/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                },
+                "summary": "Creates a Eleve resource.",
+                "description": "Creates a Eleve resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new Eleve resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Eleve.jsonld-post-eleve"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Eleve-post-eleve"
+                            }
+                        },
+                        "text/html": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Eleve-post-eleve"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "deprecated": false
+            },
+            "parameters": []
+        },
+        "/api/eleves/moyenne": {
+            "get": {
+                "operationId": "moyenne-classeEleveCollection",
+                "tags": [
+                    "Eleve"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Eleve collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hydra:member": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Eleve.jsonld"
+                                            }
+                                        },
+                                        "hydra:totalItems": {
+                                            "type": "integer",
+                                            "minimum": 0
+                                        },
+                                        "hydra:view": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@id": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:first": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "hydra:last": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "hydra:next": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                }
+                                            }
+                                        },
+                                        "hydra:search": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:template": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:variableRepresentation": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:mapping": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "@type": {
+                                                                "type": "string"
+                                                            },
+                                                            "variable": {
+                                                                "type": "string"
+                                                            },
+                                                            "property": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "required": {
+                                                                "type": "boolean"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "hydra:member"
+                                    ]
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Eleve"
+                                    }
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Eleve"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of Eleve resources.",
+                "description": "Retrieves the collection of Eleve resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 30,
+                            "minimum": 0
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "name": "pagination",
+                        "in": "query",
+                        "description": "Enable or disable pagination",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "style": "form"
+                    }
+                ],
+                "deprecated": false
+            },
+            "parameters": []
+        },
+        "/api/eleves/{id}": {
+            "get": {
+                "operationId": "getEleveItem",
+                "tags": [
+                    "Eleve"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Eleve resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve.jsonld-get-eleve"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve-get-eleve"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve-get-eleve"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "summary": "Retrieves a Eleve resource.",
+                "description": "Retrieves a Eleve resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resource identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "deprecated": false
+            },
+            "put": {
+                "operationId": "putEleveItem",
+                "tags": [
+                    "Eleve"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Eleve resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve.jsonld-get-eleve"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve-get-eleve"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve-get-eleve"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetEleveItem": {
+                                "operationId": "getEleveItem",
+                                "parameters": {
+                                    "id": "$response.body#/id"
+                                },
+                                "requestBody": [],
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET /api/eleves/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "summary": "Replaces the Eleve resource.",
+                "description": "Replaces the Eleve resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resource identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated Eleve resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Eleve.jsonld-put-eleve"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Eleve-put-eleve"
+                            }
+                        },
+                        "text/html": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Eleve-put-eleve"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "operationId": "deleteEleveItem",
+                "tags": [
+                    "Eleve"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Eleve resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "summary": "Removes the Eleve resource.",
+                "description": "Removes the Eleve resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resource identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "deprecated": false
+            },
+            "parameters": []
+        },
+        "/api/eleves/{id}/moyenne": {
+            "get": {
+                "operationId": "moyenne-eleveEleveItem",
+                "tags": [
+                    "Eleve"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Eleve resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve.jsonld"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Eleve"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "summary": "Retrieves a Eleve resource.",
+                "description": "Retrieves a Eleve resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resource identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "deprecated": false
+            },
+            "parameters": []
+        },
+        "/api/notes": {
+            "get": {
+                "operationId": "getNoteCollection",
+                "tags": [
+                    "Note"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Note collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hydra:member": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Note.jsonld-get-all-note"
+                                            }
+                                        },
+                                        "hydra:totalItems": {
+                                            "type": "integer",
+                                            "minimum": 0
+                                        },
+                                        "hydra:view": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@id": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:first": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "hydra:last": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "hydra:next": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                }
+                                            }
+                                        },
+                                        "hydra:search": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:template": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:variableRepresentation": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:mapping": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "@type": {
+                                                                "type": "string"
+                                                            },
+                                                            "variable": {
+                                                                "type": "string"
+                                                            },
+                                                            "property": {
+                                                                "type": "string",
+                                                                "nullable": true
+                                                            },
+                                                            "required": {
+                                                                "type": "boolean"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "hydra:member"
+                                    ]
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Note-get-all-note"
+                                    }
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Note-get-all-note"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of Note resources.",
+                "description": "Retrieves the collection of Note resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 30,
+                            "minimum": 0
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "name": "pagination",
+                        "in": "query",
+                        "description": "Enable or disable pagination",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "style": "form"
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "operationId": "postNoteCollection",
+                "tags": [
+                    "Note"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Note resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note.jsonld-post-note"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note-post-note"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note-post-note"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetNoteItem": {
+                                "operationId": "getNoteItem",
+                                "parameters": {
+                                    "id": "$response.body#/id"
+                                },
+                                "requestBody": [],
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET /api/notes/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                },
+                "summary": "Creates a Note resource.",
+                "description": "Creates a Note resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new Note resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Note.jsonld-post-note"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Note-post-note"
+                            }
+                        },
+                        "text/html": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Note-post-note"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "deprecated": false
+            },
+            "parameters": []
+        },
+        "/api/notes/{id}": {
+            "get": {
+                "operationId": "getNoteItem",
+                "tags": [
+                    "Note"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Note resource",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note.jsonld-get-note"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note-get-note"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note-get-note"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "summary": "Retrieves a Note resource.",
+                "description": "Retrieves a Note resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resource identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "deprecated": false
+            },
+            "put": {
+                "operationId": "putNoteItem",
+                "tags": [
+                    "Note"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Note resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note.jsonld-get-note"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note-get-note"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note-get-note"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetNoteItem": {
+                                "operationId": "getNoteItem",
+                                "parameters": {
+                                    "id": "$response.body#/id"
+                                },
+                                "requestBody": [],
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET /api/notes/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "summary": "Replaces the Note resource.",
+                "description": "Replaces the Note resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resource identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "requestBody": {
+                    "description": "The updated Note resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Note.jsonld-put-note"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Note-put-note"
+                            }
+                        },
+                        "text/html": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Note-put-note"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "operationId": "deleteNoteItem",
+                "tags": [
+                    "Note"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Note resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "summary": "Removes the Note resource.",
+                "description": "Removes the Note resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resource identifier",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "deprecated": false
+            },
+            "parameters": []
+        }
+    },
+    "components": {
+        "schemas": {
+            "Eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "nom": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "notes": {
+                        "readOnly": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
+                    },
+                    "createdAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "updatedAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "deletedAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "isDeleted": {
+                        "readOnly": true,
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Eleve-get-all-eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "nom": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Eleve-get-eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "nom": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Eleve-post-eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "nom": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Eleve-put-eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "nom": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Eleve.jsonld": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "nom": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "notes": {
+                        "readOnly": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
+                    },
+                    "createdAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "updatedAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "deletedAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "isDeleted": {
+                        "readOnly": true,
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Eleve.jsonld-get-all-eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "nom": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Eleve.jsonld-get-eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "nom": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Eleve.jsonld-post-eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "nom": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Eleve.jsonld-put-eleve": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "nom": {
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "type": "string"
+                    },
+                    "dateDeNaissance": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "valeur": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "eleve": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "iri-reference"
+                    },
+                    "createdAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "updatedAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "deletedAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "isDeleted": {
+                        "readOnly": true,
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Note-get-all-note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "valeur": {
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Note-get-note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "valeur": {
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Note-post-note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "valeur": {
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "type": "string"
+                    },
+                    "eleve": {
+                        "type": "string",
+                        "format": "iri-reference"
+                    }
+                }
+            },
+            "Note-put-note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "valeur": {
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Note.jsonld": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "valeur": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "eleve": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "iri-reference"
+                    },
+                    "createdAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "updatedAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "deletedAt": {
+                        "readOnly": true,
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "isDeleted": {
+                        "readOnly": true,
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Note.jsonld-get-all-note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "valeur": {
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Note.jsonld-get-note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "valeur": {
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Note.jsonld-post-note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "valeur": {
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "type": "string"
+                    },
+                    "eleve": {
+                        "type": "string",
+                        "format": "iri-reference"
+                    }
+                }
+            },
+            "Note.jsonld-put-note": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "valeur": {
+                        "type": "integer"
+                    },
+                    "matiere": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "responses": {},
+        "parameters": {},
+        "examples": {},
+        "requestBodies": {},
+        "headers": {},
+        "securitySchemes": {}
+    },
+    "security": [],
+    "tags": []
+}

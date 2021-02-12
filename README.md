@@ -35,6 +35,7 @@ Création de la base de données et du schéma de données
    php bin/console doctrine:schema:create
    ```
 Serveur
+
 Vous pouvez lancer le serveur PHP via les commandes suivantes :
 ```sh
 $ php -S localhost:8000 -t public/

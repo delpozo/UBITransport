@@ -43,6 +43,7 @@ class NoteService implements NoteInterface
                 $moyenne += $this->calculMoyenneParEleve($eleve);
                 ++$countEleves;
             }
+            if($countEleves === 0) return 0;
             return ($moyenne / $countEleves);
         }catch (\Exception $exception){
             return 0;

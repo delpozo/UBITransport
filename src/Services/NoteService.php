@@ -26,6 +26,7 @@ class NoteService implements NoteInterface
             }
             //var_dump($notes / $matiere);
             //die();
+            if ( $matiere === 0) return 0;
             return ($notes / $matiere);
         }
         catch (\Exception $exception){

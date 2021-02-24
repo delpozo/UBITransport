@@ -63,6 +63,7 @@ class Note
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"get-note", "get-all-note", "post-note", "put-note"})
      */
     private $id;
 
@@ -87,7 +88,7 @@ class Note
     /**
      * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="notes")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"post-note", "get-all-note"})
+     * @Groups({"post-note", "get-all-note" ,"get-note"})
      */
     private $eleve;
 

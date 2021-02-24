@@ -79,19 +79,19 @@ class Eleve
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"get-eleve"})
+     * @Groups({"get-eleve","get-all-eleve", "get-all-note"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=60)
-     * @Groups({"get-eleve", "get-all-eleve", "post-eleve", "put-eleve"})
+     * @Groups({"get-eleve", "get-all-eleve", "post-eleve", "put-eleve", "get-all-note"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=60)
-     * @Groups({"get-eleve", "get-all-eleve", "post-eleve", "put-eleve"})
+     * @Groups({"get-eleve", "get-all-eleve", "post-eleve", "put-eleve", "get-all-note"})
      */
     private $prenom;
 

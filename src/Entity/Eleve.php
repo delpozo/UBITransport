@@ -85,13 +85,13 @@ class Eleve
 
     /**
      * @ORM\Column(type="string", length=60)
-     * @Groups({"get-eleve", "get-all-eleve", "post-eleve", "put-eleve", "get-all-note"})
+     * @Groups({"get-eleve", "get-all-eleve", "post-eleve", "put-eleve", "get-all-note", "get-all-note"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=60)
-     * @Groups({"get-eleve", "get-all-eleve", "post-eleve", "put-eleve", "get-all-note"})
+     * @Groups({"get-eleve", "get-all-eleve", "post-eleve", "put-eleve", "get-all-note", "get-all-note"})
      */
     private $prenom;
 

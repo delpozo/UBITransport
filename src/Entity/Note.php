@@ -41,7 +41,7 @@ use App\Traits\TimestampTrait;
  *         },
  *         "post"={
  *             "normalization_context"={
- *                "groups"={"post-note"}
+ *                "groups"={"get-all-note"}
  *             },
  *             "denormalization_context"={
  *                "groups"={"post-note"}
@@ -88,7 +88,7 @@ class Note
     /**
      * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="notes")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"post-note", "get-all-note" ,"get-note"})
+     * @Groups({"post-note", "get-all-note"})
      */
     private $eleve;
 

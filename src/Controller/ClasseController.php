@@ -24,7 +24,6 @@ class ClasseController extends AbstractController
         $resultat = [
             'moyenne' =>  $this->noteService->calculMoyenneParClasse($data)
         ];
-
         return new JsonResponse($resultat);
     }
 }
